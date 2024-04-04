@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="logo"><img src="replicate-prediction-8wynd321hxrga0cend5ahfshdw-removebg-preview.png" alt="">
+            </div>
+            <div class="top-icons">
+                <div class="item">
+                    <img src="plus.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="search-interface-symbol.png" alt="">
+                </div>
+                <div class="item">
+                    <img class="menu-icon" src="menu.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <ul class="carousel">
+            <li class="item" id="sevimliler">
+                <a href="#">Sevimliler</a>
+            </li>
+            <li class="item" id="mahni-siyahilari">
+                <a href="#">Mahni siyahilari</a>
+            </li>
+            <li class="item" id="mahnilar">
+                <a href="#">Mahnilar</a>
+            </li>
+            <li class="item" id="qovluqlar">
+                <a href="#">Qovluqlar</a>
+            </li>
+        </ul>
+
+        <div class="main">
+            <div class="main-top-selector">
+                <div class="item"></div>
+                <p>Ad</p>
+            </div>
+
+            <div class="main-folder-list">
+                <div class="item">
+                    <div class="cover">A</div>
+                    <div class="text">
+                        <p class="primary">Son əlavə edilən</p>
+                        <p class="secondary">499 musiqi</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="cover">B</div>
+                    <div class="text">
+                        <p class="primary">Ən çox səslənən</p>
+                        <p class="secondary">100 musiqi</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="cover">C</div>
+                    <div class="text">
+                        <p class="primary">Son ifa edilən</p>
+                        <p class="secondary">100 musiqi</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="cover">D</div>
+                    <div class="text">
+                        <p class="primary">Sevimli mahnılar</p>
+                        <p class="secondary">350 musiqi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary-list">
+                <div class="item">
+                    <div class="item-img">A</div>
+                    <div class="text">
+                        <p class="primary">Public</p>
+                        <p class="secondary">121 musiqi</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-img">B</div>
+                    <div class="text last">
+                        <p class="primary">Siyahi</p>
+                        <p class="secondary">76 musiqi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <div class="left">
+                <div class="msimg-item"></div>
+                <div class="text">
+                    <p class="primary"><b>Röya - Bahar</b></p>
+                    <p class="secondary">Röya Official</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="nav-item"></div>
+                <div class="nav-item"></div>
+                <div class="nav-item"></div>
+                <div class="nav-item"></div>
+            </div>
+
+        </nav>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carousel = document.querySelector(".carousel");
+            const items = carousel.querySelectorAll(".item");
+
+            function setActiveItem() {
+                const viewportWidth = window.innerWidth;
+                const carouselRect = carousel.getBoundingClientRect();
+                const carouselWidth = carouselRect.width;
+
+                const center = carouselWidth / 2;
+
+                items.forEach((item) => {
+                    const itemRect = item.getBoundingClientRect();
+                    const itemCenter = itemRect.left + itemRect.width / 2;
+
+                    if (Math.abs(itemCenter - center) < viewportWidth / 4) {
+                        item.classList.add("active");
+                    } else {
+                        item.classList.remove("active");
+                    }
+                });
+            }
+
+            setActiveItem();
+
+            // Tıklandığında iteme active class'ı ekleyen fonksiyon
+            function handleClick(event) {
+                items.forEach(item => {
+                    item.classList.remove("active");
+                });
+                event.currentTarget.classList.add("active");
+            }
+
+            // Her bir öğe için tıklama olayını dinle
+            items.forEach(item => {
+                item.addEventListener("click", handleClick);
+            });
+
+            carousel.addEventListener("scroll", setActiveItem);
+            window.addEventListener("resize", setActiveItem);
+        });
+
+    </script>
+</body>
+
+</html>
